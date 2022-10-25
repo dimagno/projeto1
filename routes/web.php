@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+Use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::prefix('/user')->group(function(){
+    Route::get('edit', function(){
+        return 'edit';
+    })->name('usuario.edit');
+    Route::get('/{user}', [UserController::class, 'show']);
+});
+Route::get('/request', function(Request $req){
+    dd($req);
+    return "x";
 });
