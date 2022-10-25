@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::prefix('/user')->group(function(){
-    Route::get('edit', function(){
-        return 'edit';
-    })->name('usuario.edit');
+    Route::get('/', [UserController::class,'index' ])->name('user.index');
+    Route::get('edit/{id}',[UserController::class, 'edit'])->name('usuario.edit');
     Route::get('/{user}', [UserController::class, 'show']);
+   
 });
 Route::get('/request', function(Request $req){
     dd($req);
